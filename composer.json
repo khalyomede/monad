@@ -1,4 +1,25 @@
 {
+    "name": "khalyomede/monad",
+    "description": "Maybe, Option and Result monads.",
+    "version": "0.1.0",
+    "time": "2021-08-07",
+    "type": "library",
+    "keywords": [
+        "functional",
+        "programming",
+        "adt",
+        "monad"
+    ],
+    "homepage": "https://github.com/khalyomede/monad",
+    "readme": "https://github.com/khalyomede/monad/blob/master/README.md",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Khalyomede",
+            "email": "khalyomede@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "require-dev": {
         "pestphp/pest": "1.15.0",
         "infection/infection": "0.24.0",
