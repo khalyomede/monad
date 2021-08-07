@@ -1,0 +1,23 @@
+{
+    "require-dev": {
+        "pestphp/pest": "1.15.0",
+        "infection/infection": "0.24.0",
+        "phpstan/phpstan": "0.12.94",
+        "friendsofphp/php-cs-fixer": "3.0.2"
+    },
+    "scripts": {
+        "test": "XDEBUG_MODE=coverage pest --coverage",
+        "mutate": "XDEBUG_MODE=coverage infection --test-framework=pest --show-mutations",
+        "analyze": "phpstan analyse",
+        "lint": "php-cs-fixer fix --using-cache=no --dry-run --allow-risky=yes",
+        "fix": "php-cs-fixer fix --using-cache=no --allow-risky=yes"
+    },
+    "autoload": {
+        "psr-4": {
+            "Khalyomede\\Monad\\": "src"
+        }
+    },
+    "require": {
+        "webmozart/assert": "1.10.0"
+    }
+}

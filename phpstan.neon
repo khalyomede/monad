@@ -1,0 +1,9 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    ignoreErrors:
+        - '#Extendable::toBe#'
+    excludePaths:
+        - tests\unit\Pest.php
