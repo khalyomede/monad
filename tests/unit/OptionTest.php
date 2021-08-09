@@ -5,6 +5,9 @@ use Khalyomede\Monad\Option;
 test(
     'it returns none',
     function () {
+        /**
+         * @var Option<bool>
+         */
         $value = Option::none()
             ->then(fn () => true)
             ->catch(fn () => false)
@@ -17,6 +20,9 @@ test(
 test(
     'it return some',
     function () {
+        /**
+         * @var Option<bool>
+         */
         $value = Option::some(true)
             ->then(fn ($value) => $value)
             ->catch(fn () => false)

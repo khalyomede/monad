@@ -6,6 +6,8 @@ use Webmozart\Assert\Assert;
 
 /**
  * Represents the presence or absence of value.
+ *
+ * @template T
  */
 final class Option implements MonadWithOutcome
 {
@@ -14,6 +16,8 @@ final class Option implements MonadWithOutcome
 
     /**
      * The value if the outcome is "value present".
+     *
+     * @var T
      */
     private mixed $value;
 
@@ -26,6 +30,7 @@ final class Option implements MonadWithOutcome
 
     /**
      * @param int<1, 2> $kind
+     * @param T         $value
      */
     public function __construct(int $kind, mixed $value = null)
     {
@@ -35,11 +40,19 @@ final class Option implements MonadWithOutcome
         $this->kind = $kind;
     }
 
+    /**
+     * @return self<null>
+     */
     public static function none(): self
     {
         return new self(self::KIND_NONE);
     }
 
+    /**
+     * @param T $value
+     *
+     * @return self<T>
+     */
     public static function some(mixed $value): self
     {
         return new self(self::KIND_SOME, $value);
@@ -47,6 +60,8 @@ final class Option implements MonadWithOutcome
 
     /**
      * Handles a successful outcome ("some").
+     *
+     * @return self<T>
      */
     public function then(callable $callback): self
     {

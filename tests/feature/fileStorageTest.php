@@ -2,11 +2,19 @@
 
 use Khalyomede\Monad\Option;
 
+/**
+ * @return Option<string>
+ */
 function getFileContent(string $filePath): Option
 {
     $content = file_get_contents($filePath);
 
-    return false === $content ? Option::none() : Option::some($content);
+    /**
+     * @var Option<string>
+     */
+    $none = Option::none();
+
+    return false === $content ? $none : Option::some($content);
 }
 
 test(
