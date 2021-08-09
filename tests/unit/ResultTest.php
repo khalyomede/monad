@@ -5,6 +5,9 @@ use Khalyomede\Monad\Result;
 test(
     'it returns error',
     function () {
+        /**
+         * @var Result<bool>
+         */
         $value = Result::error(false)
             ->then(fn () => true)
             ->catch(fn ($error) => $error)
@@ -17,6 +20,9 @@ test(
 test(
     'return ok',
     function () {
+        /**
+         * @var Result<bool>
+         */
         $value = Result::ok(true)
             ->then(fn ($value) => $value)
             ->catch(fn () => false)

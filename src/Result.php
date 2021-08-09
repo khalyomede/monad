@@ -6,6 +6,10 @@ use Webmozart\Assert\Assert;
 
 /**
  * Represents an result that can be successful or failed.
+ *
+ * @template T
+ *
+ * @todo Find how to declare @template <T, E>
  */
 final class Result implements MonadWithOutcome
 {
@@ -14,6 +18,8 @@ final class Result implements MonadWithOutcome
 
     /**
      * The value in case of success.
+     *
+     * @var T
      */
     private mixed $okValue;
 
@@ -31,6 +37,7 @@ final class Result implements MonadWithOutcome
 
     /**
      * @param int<1, 2> $kind
+     * @param T         $okValue
      */
     public function __construct(int $kind, mixed $okValue = null, mixed $errorValue = null)
     {
@@ -41,6 +48,9 @@ final class Result implements MonadWithOutcome
         $this->kind = $kind;
     }
 
+    /**
+     * @return self<null>
+     */
     public static function error(mixed $value): self
     {
         return new self(
@@ -49,6 +59,11 @@ final class Result implements MonadWithOutcome
         );
     }
 
+    /**
+     * @param T $value
+     *
+     * @return self<T>
+     */
     public static function ok(mixed $value): self
     {
         return new self(
@@ -59,6 +74,8 @@ final class Result implements MonadWithOutcome
 
     /**
      * Handles a successful outcome ("ok").
+     *
+     * @return self<T>
      */
     public function then(callable $callback): self
     {
