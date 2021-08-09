@@ -5,6 +5,9 @@ use Khalyomede\Monad\Maybe;
 test(
     'it return just',
     function () {
+        /**
+         * @var Maybe<bool>
+         */
         $value = Maybe::just(true)
             ->then(fn ($value) => $value)
             ->catch(fn () => false)
@@ -17,6 +20,9 @@ test(
 test(
     'it return nothing',
     function () {
+        /**
+         * @var Maybe<bool>
+         */
         $value = Maybe::nothing()
             ->then(fn () => true)
             ->catch(fn () => false)

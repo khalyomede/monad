@@ -6,6 +6,8 @@ use Webmozart\Assert\Assert;
 
 /**
  * Represents a data that can either exist (just) or not (nothing).
+ *
+ * @template T
  */
 final class Maybe implements MonadWithOutcome
 {
@@ -14,6 +16,8 @@ final class Maybe implements MonadWithOutcome
 
     /**
      * The concrete value in case the state is "just".
+     *
+     * @var T
      */
     private mixed $_value;
 
@@ -24,6 +28,7 @@ final class Maybe implements MonadWithOutcome
 
     /**
      * @param int<1, 2> $kind
+     * @param T         $value
      */
     public function __construct(int $kind, mixed $value = null)
     {
@@ -33,11 +38,19 @@ final class Maybe implements MonadWithOutcome
         $this->_kind = $kind;
     }
 
+    /**
+     * @param T $value
+     *
+     * @return self<T>
+     */
     public static function just(mixed $value): self
     {
         return new self(self::KIND_JUST, $value);
     }
 
+    /**
+     * @return self<null>
+     */
     public static function nothing(): self
     {
         return new self(self::KIND_NOTHING);
@@ -45,6 +58,8 @@ final class Maybe implements MonadWithOutcome
 
     /**
      * Handles a successful outcome (just).
+     *
+     * @return self<T>
      */
     public function then(callable $callback): self
     {
@@ -56,6 +71,8 @@ final class Maybe implements MonadWithOutcome
 
     /**
      * Handles a failed outcome (nothing).
+     *
+     * @return self<T>
      */
     public function catch(callable $callback): mixed
     {

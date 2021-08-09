@@ -4,6 +4,9 @@ use Khalyomede\Monad\Maybe;
 
 final class Router
 {
+    /**
+     * @return Maybe<self>
+     */
     public function addGetRoute(): Maybe
     {
         return Maybe::just($this);
