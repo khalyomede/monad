@@ -39,6 +39,7 @@ composer require khalyomede/monad
 
 - [1. Getting a file content](#1-getting-a-file-content)
 - [2. Get users from an SQL table](#2-get-users-from-an-sql-table)
+- [3. Chain multiple outcomes](#3-chain-multiple-outcomes)
 
 ### 1. Getting a file content
 
@@ -100,6 +101,59 @@ $users = getUsers()
 
     return [];
   });
+```
+
+### 3. Chain multiple outcomes
+
+In this example, we will chain multiple times "then", similar to what is possible in other languages through "map".
+
+```php
+use Khalyomede\Monad\Result;
+
+function getFileContent(string $path): Result
+{
+  $content = file_get_contents($path);
+
+  return $content === false ?
+    Result::error(new Exception("Cannot get content of file $path.")) :
+    Result::ok($content);
+}
+
+function saveFileContent(string $path, string $content): Result
+{
+  $result = file_put_contents($path, $content);
+
+  return $result === false ?
+    Result::error(new Exception("Cannot write file content of file $path.")) :
+    Result::ok(true);
+}
+
+// main
+$result = fileGetContent("composer.json")
+  ->then(fn (string $content): Result => saveFileContent("composer.json.save", $content))
+  ->then(fn (): string => "composer.json backup finished.")
+  ->catch(fn (Exception $exception): string => $exception->getMessage());
+
+echo $result . PHP_EOL;
+```
+
+```bash
+khalyomede@pc > php index.php
+composer.json backup finished.
+```
+
+If you remove the file, the result becomes
+
+```bash
+khalyomede@pc > php index.php
+Cannot get content of file composer.json.
+```
+
+If you remove the write permission on this file, the result becomes
+
+```bash
+khalyomede@pc > php index.php
+Cannot write file content of file composer.json.save.
 ```
 
 ## API
