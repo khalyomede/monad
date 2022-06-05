@@ -21,10 +21,10 @@
         }
     ],
     "require-dev": {
-        "pestphp/pest": "1.15.0",
-        "infection/infection": "0.24.0",
-        "phpstan/phpstan": "0.12.94",
-        "friendsofphp/php-cs-fixer": "3.0.2",
+        "pestphp/pest": "1.21.3",
+        "infection/infection": "0.26.10",
+        "phpstan/phpstan": "1.7.10",
+        "friendsofphp/php-cs-fixer": "3.8.0",
         "thibautselingue/local-php-security-checker-installer": "1.0.3"
     },
     "scripts": {
@@ -42,7 +42,7 @@
         }
     },
     "require": {
-        "webmozart/assert": "1.10.0"
+        "webmozart/assert": "1.11.0"
     },
     "config": {
         "allow-plugins": {
