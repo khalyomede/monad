@@ -1,15 +1,22 @@
 version: "3"
 services:
   php:
-    image: php:8-alpine
+    build: ./docker/php/8.0
     entrypoint: php
     volumes:
       - .:/home/alpine
     working_dir: /home/alpine
 
   composer:
-    build: ./docker/composer
+    build: ./docker/php/8.0
     entrypoint: composer
     volumes:
       - .:/home/alpine
     working_dir: /home/alpine
+
+  app:
+    build: ./docker/php/8.0
+    tty: true
+    volumes:
+      - .:/home/ubuntu/app
+    working_dir: /home/ubuntu/app
