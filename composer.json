@@ -24,14 +24,17 @@
         "pestphp/pest": "1.15.0",
         "infection/infection": "0.24.0",
         "phpstan/phpstan": "0.12.94",
-        "friendsofphp/php-cs-fixer": "3.0.2"
+        "friendsofphp/php-cs-fixer": "3.0.2",
+        "thibautselingue/local-php-security-checker-installer": "1.0.3"
     },
     "scripts": {
         "test": "XDEBUG_MODE=coverage pest --coverage",
         "mutate": "XDEBUG_MODE=coverage infection --test-framework=pest --show-mutations",
         "analyse": "phpstan analyse",
         "lint": "php-cs-fixer fix --using-cache=no --dry-run --allow-risky=yes",
-        "fix": "php-cs-fixer fix --using-cache=no --allow-risky=yes"
+        "fix": "php-cs-fixer fix --using-cache=no --allow-risky=yes",
+        "install-security-checker": "local-php-security-checker-installer",
+        "check": "local-php-security-checker"
     },
     "autoload": {
         "psr-4": {

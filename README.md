@@ -163,6 +163,7 @@ For a list of all possible functions, see the _tests\unit_ folder.
 ## Tests
 
 ```bash
+composer run install-security-checker
 composer run test
 composer run mutate
 composer run analyse

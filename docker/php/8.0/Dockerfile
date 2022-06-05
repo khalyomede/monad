@@ -8,6 +8,7 @@ RUN apt-get update && \
     apt-get upgrade --yes && \
     apt-get install --yes \
     git \
+    curl \
     php8.0-cli \
     php8.0-xml \
     php8.0-dom \
