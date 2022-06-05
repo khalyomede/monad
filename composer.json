@@ -29,7 +29,7 @@
     "scripts": {
         "test": "XDEBUG_MODE=coverage pest --coverage",
         "mutate": "XDEBUG_MODE=coverage infection --test-framework=pest --show-mutations",
-        "analyze": "phpstan analyse",
+        "analyse": "phpstan analyse",
         "lint": "php-cs-fixer fix --using-cache=no --dry-run --allow-risky=yes",
         "fix": "php-cs-fixer fix --using-cache=no --allow-risky=yes"
     },
